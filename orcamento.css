@@ -1,7 +1,7 @@
 :root{--black:#080808;--dark:#111;--card:#161616;--border:#2a2a2a;--red:#c0190f;--red-hot:#e02010;--orange:#e05a10;--gold:#f0b800;--white:#f0ebe0;--silver:#a09888;--muted:#585048;--wa:#1faa59;
 --fd:'Bebas Neue','Impact',sans-serif;--fb:'Barlow Condensed',system-ui,sans-serif;--r:8px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--fb);background:var(--black);color:var(--white);font-size:18px;line-height:1.4}
+body{font-family:var(--fb);background:var(--black);color:var(--white);font-size:18px;line-height:1.4;overflow-x:hidden}
 img{max-width:100%;display:block}
 h1,h2{font-family:var(--fd);letter-spacing:.04em;font-weight:400}
 h1{font-size:1.9rem}h2{font-size:1.5rem;margin:1.4rem 0 .6rem;color:var(--gold)}
@@ -81,8 +81,56 @@ body.tab-previa .folha-wrap{display:block}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 @media(max-width:700px){
-  .topo h1{font-size:1.4rem}.prod .linha{grid-template-columns:1fr 1fr}
-  .tbl thead{display:none}.tbl tr{display:block;padding:.5rem 0;border-bottom:1px solid var(--border)}
-  .tbl td{display:flex;justify-content:space-between;align-items:center;border:0;padding:.2rem 0}
-  .tbl td::before{content:attr(data-l);color:var(--silver);font-size:.85rem}
+  body{font-size:17px}
+  .topo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.5rem;padding:.65rem .75rem}
+  .topo__logo img{height:38px}
+  .topo h1{min-width:0;font-size:1.45rem;line-height:1.05}
+  .topo .btn{grid-column:1/-1;width:100%;padding:.45rem .7rem}
+  .abas{gap:.1rem;padding:.35rem .45rem 0;scrollbar-width:none}
+  .abas::-webkit-scrollbar{display:none}
+  .abas button{padding:.55rem .7rem;font-size:.95rem}
+  .resumo{flex-wrap:wrap;gap:.2rem .75rem;padding:.55rem .75rem;font-size:1rem}
+  .resumo span:last-child{margin-left:auto}
+  main{padding:.75rem}
+  h2{font-size:1.4rem;margin:1.15rem 0 .55rem}
+  .filtros{display:grid;grid-template-columns:minmax(0,1fr);gap:.5rem;margin-bottom:.75rem}
+  .filtros input{min-width:0}
+  .grid{grid-template-columns:minmax(0,1fr);gap:.7rem}
+  .prod{padding:.75rem;gap:.55rem}
+  .prod h3{font-size:1.3rem}
+  .prod .linha{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.45rem}
+  .prod .s-qtd{grid-column:1/-1}
+  .btn{min-height:2.6rem;padding:.55rem .8rem}
+  .painel{padding:.8rem;margin-bottom:.75rem}
+  .campos{grid-template-columns:minmax(0,1fr);gap:.7rem}
+  .campos .larga{grid-column:auto}
+  .duplo{grid-template-columns:minmax(0,1fr) 72px}
+  .seg{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .seg button{padding:.55rem .5rem}
+  .tbl{display:block}
+  .tbl thead{display:none}
+  .tbl tbody{display:grid;gap:.6rem}
+  .tbl tr{display:block;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.45rem .6rem}
+  .tbl td{display:flex;justify-content:space-between;align-items:center;gap:.75rem;border:0;padding:.3rem 0;min-width:0}
+  .tbl td::before{content:attr(data-l);flex:0 0 5.1rem;color:var(--silver);font-size:.85rem}
+  .tbl td:not(:has(input)):not(:has(button)){text-align:right}
+  .tbl td input{width:min(100%,130px)}
+  .tbl td:last-child{padding-top:.5rem}
+  .tbl td:last-child::before{display:none}
+  .tbl td:last-child .btn{width:100%;min-height:2.3rem}
+  .acoes{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+  .acoes .btn{width:100%}
+  .hist{align-items:stretch;padding:.7rem}
+  .hist>span{width:100%}
+  .hist>span:last-child{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
+  .hist .btn{width:100%;padding:.45rem .3rem}
+  .folha-wrap{padding:0;scroll-snap-type:x mandatory}
+  .folha{scroll-snap-align:start}
+}
+@media(max-width:420px){
+  .topo h1{font-size:1.3rem}
+  .resumo span:last-child{width:100%;margin-left:0}
+  .acoes{grid-template-columns:1fr}
+  .tbl td::before{flex-basis:4.5rem}
+  .hist>span:last-child{grid-template-columns:1fr}
 }
