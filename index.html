@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orçamento — Urutau Jigs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="orcamento.css">
+</head>
+<body>
+<header class="topo no-print">
+  <a href="../index.html" class="topo__logo"><img src="../logo-urutau.png" alt="Urutau Jigs"></a>
+  <h1>Gerador de Orçamentos</h1>
+  <a href="../index.html" class="btn btn--ghost">← Catálogo</a>
+</header>
+
+<nav class="abas no-print" id="abas">
+  <button data-tab="produtos" class="on">1 · Produtos</button>
+  <button data-tab="dados">2 · Cliente e condições</button>
+  <button data-tab="previa">3 · Prévia e PDF</button>
+  <button data-tab="hist">Histórico</button>
+</nav>
+
+<div class="resumo no-print" id="resumoBar"></div>
+
+<main class="no-print">
+  <section id="tab-produtos" class="aba on">
+    <div class="filtros">
+      <input type="search" id="busca" placeholder="Buscar isca pelo nome…" aria-label="Buscar">
+      <select id="filtroCat" aria-label="Categoria"><option value="">Todas as categorias</option></select>
+    </div>
+    <div id="listaProdutos" class="grid"><p class="vazio">Carregando catálogo…</p></div>
+
+    <h2>Itens do orçamento</h2>
+    <div id="itens"></div>
+  </section>
+
+  <section id="tab-dados" class="aba">
+    <div class="painel">
+      <h2>Tipo de cliente</h2>
+      <div class="seg" id="tipoSeg">
+        <button data-tipo="consumidor">Consumidor</button>
+        <button data-tipo="lojista">Lojista</button>
+      </div>
+      <p class="dica">Cada tipo tem sua própria tabela de preços. Ao editar o preço de um item, o valor passa a ser o padrão daquela isca para o tipo selecionado.</p>
+    </div>
+    <div class="painel">
+      <h2>Cliente</h2>
+      <div class="campos">
+        <label>Nome ou empresa *<input id="c_nome" autocomplete="off"></label>
+        <label>CPF/CNPJ<input id="c_doc" inputmode="numeric"></label>
+        <label>Telefone / WhatsApp<input id="c_tel" inputmode="tel" placeholder="(31) 99999-9999"></label>
+        <label>E-mail<input id="c_email" type="email"></label>
+        <label class="larga">Endereço de entrega<input id="c_end"></label>
+      </div>
+    </div>
+    <div class="painel">
+      <h2>Orçamento</h2>
+      <div class="campos">
+        <label>Número<input id="o_num" readonly></label>
+        <label>Data de emissão<input id="o_data" type="date"></label>
+        <label>Validade (dias)<input id="o_val" type="number" min="1" step="1"></label>
+        <label>Prazo de entrega<input id="o_prazo" placeholder="Ex.: a combinar"></label>
+        <label>Forma de pagamento<input id="o_pag" placeholder="Ex.: Pix, cartão…"></label>
+        <label>Frete (R$)<input id="o_frete" inputmode="decimal" placeholder="0,00"></label>
+        <label>Desconto
+          <span class="duplo"><input id="o_desc" inputmode="decimal" placeholder="0"><select id="o_desc_tipo"><option value="valor">R$</option><option value="pct">%</option></select></span>
+        </label>
+        <label class="larga">Observações<textarea id="o_obs" rows="3"></textarea></label>
+      </div>
+    </div>
+    <details class="painel">
+      <summary>Dados da empresa (cabeçalho do PDF)</summary>
+      <div class="campos">
+        <label>Telefone / WhatsApp<input id="e_tel"></label>
+        <label>CNPJ<input id="e_cnpj" placeholder="Opcional"></label>
+        <label>E-mail<input id="e_email" placeholder="Opcional"></label>
+        <label>Endereço / cidade<input id="e_end" placeholder="Opcional"></label>
+      </div>
+      <p class="dica">Campos em branco não aparecem no PDF.</p>
+    </details>
+  </section>
+
+  <section id="tab-previa" class="aba">
+    <div id="avisos"></div>
+    <div class="acoes">
+      <button class="btn" id="btnSalvar">Salvar rascunho</button>
+      <button class="btn btn--main" id="btnPdf">Gerar PDF</button>
+      <button class="btn btn--wa" id="btnWa">Abrir WhatsApp</button>
+      <button class="btn btn--ghost" id="btnNovo">Novo orçamento</button>
+    </div>
+    <p class="dica">O WhatsApp não anexa o PDF sozinho: gere o PDF primeiro, abra a conversa e anexe o arquivo manualmente.</p>
+  </section>
+
+  <section id="tab-hist" class="aba">
+    <p class="dica">Os orçamentos ficam salvos neste navegador. Podem ser perdidos se os dados do navegador forem apagados ou se você trocar de aparelho.</p>
+    <div id="listaHist"></div>
+  </section>
+</main>
+
+<div class="folha-wrap"><article id="folha" class="folha"></article></div>
+<div id="toast" class="toast no-print" role="status"></div>
+<script src="orcamento.js"></script>
+</body>
+</html>
